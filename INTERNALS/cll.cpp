@@ -1,50 +1,47 @@
-// Write a program to perform the following operations on circular linked list.:
-// i) Creation ii) Insertion iii) Deletion iv) Traversal v) Count of nodes
-
+// CLL
 #include <iostream>
 using namespace std;
 class Node {
 public:
     int data;
-    Node *next;
-    Node *prev;
+    Node *next, *prev;
     Node(int d) {
         data = d;
-        next = NULL;
-        prev = NULL;
-    }
-    void display() {
-        cout << data << " ";
+        prev = next = NULL;
     }
 };
 class CLL {
 public:
     Node *head, *tail;
     CLL() {
-        head = NULL;
-        tail = NULL;
+        head = tail = NULL;
     }
-    void insert(int d) {
+    void addAtTail() {
+        int d;
+        cout << "Enter element to insert at end : ";
+        cin >> d;
         Node *temp = new Node(d);
         if (head == NULL) {
             head = temp;
             tail = temp;
         } else {
-            temp->next = head;
-            head->prev = temp;
-            head = temp;
+            tail->next = temp;
+            temp->prev = tail;
+            tail = temp;
         }
     }
     void display() {
         Node *temp = head;
-        cout << "List is : ";
         while (temp != NULL) {
-            temp->display();
+            cout << temp->data << " ";
             temp = temp->next;
         }
         cout << endl;
     }
-    void deleteNode(int d) {
+    void deleteNode() {
+        int d;
+        cout << "Enter element to delete : ";
+        cin >> d;
         Node *temp = head;
         while (temp != NULL) {
             if (temp->data == d) {
@@ -59,7 +56,7 @@ public:
                     temp->next->prev = temp->prev;
                 }
                 delete temp;
-                break;
+                return;
             }
             temp = temp->next;
         }
@@ -68,25 +65,23 @@ public:
 int main() {
     CLL cll;
     int x, ch, ele;
-    while (ch != 4) {
+    while (1) {
         cout << "\nCIRCULAR LINKED LIST OPERATIONS" << endl;
         cout << "1) Insertion\n2) Deletion\n3) Display\n4) Exit\nEnter your choice : ";
         cin >> ch;
         switch (ch) {
             case 1:
-                cout << "Enter element to be inserted : ";
-                cin >> ele;
-                cll.insert(ele);
+                cll.addAtTail();
                 break;
             case 2:
-                cout << "Enter element to be deleted : ";
-                cin >> ele;
-                cll.deleteNode(ele);
+                cll.deleteNode();
                 break;
             case 3:
                 cll.display();
                 break;
             case 4:
+                cout << "Exit" << endl;
+                exit(0);
                 break;
         }
     }
@@ -98,7 +93,7 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 1
-// Enter element to be inserted : 5
+// Enter element to insert at end : 5
 
 // CIRCULAR LINKED LIST OPERATIONS
 // 1) Insertion
@@ -106,7 +101,7 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 1
-// Enter element to be inserted : 10
+// Enter element to insert at end : 10
 
 // CIRCULAR LINKED LIST OPERATIONS
 // 1) Insertion
@@ -114,7 +109,7 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 1
-// Enter element to be inserted : 15
+// Enter element to insert at end : 15
 
 // CIRCULAR LINKED LIST OPERATIONS
 // 1) Insertion
@@ -122,7 +117,7 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 3
-// List is : 15 10 5
+// 5 10 15
 
 // CIRCULAR LINKED LIST OPERATIONS
 // 1) Insertion
@@ -130,7 +125,7 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 2
-// Enter element to be deleted : 10
+// Enter element to delete : 10
 
 // CIRCULAR LINKED LIST OPERATIONS
 // 1) Insertion
@@ -138,7 +133,7 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 3
-// List is : 15 5
+// 5 15
 
 // CIRCULAR LINKED LIST OPERATIONS
 // 1) Insertion
@@ -146,3 +141,4 @@ int main() {
 // 3) Display
 // 4) Exit
 // Enter your choice : 4
+// Exit
