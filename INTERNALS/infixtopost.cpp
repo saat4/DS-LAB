@@ -1,22 +1,10 @@
-/* Write C++ program to convert infix expression to postfix
-
-Sample Test case:
-
-Enter expression                                                                                                        
-input=a+b*c/d-e
-output=                                                                                                      
-Postfix form: abc*d/+e-   
-
-*/
-#include <iostream>
-#include <stack>
+#include <bits/stdc++.h>
 using namespace std;
-class ITFConversion {
+class Solution {
 public:
     stack<char> st;
     string res;
     int prec(char c) {
-        //Write code here
         if (c == '+' || c == '-') return 1;
         if (c == '*' || c == '/') return 2;
         return 0;
@@ -26,7 +14,6 @@ public:
         return false;
     }
     string infixToPostfix(string s) {
-        //Write code here
         for (int i = 0; i < s.length(); i++) {
             if (isop(s[i])) {
                 while (!st.empty() && prec(st.top()) >= prec(s[i])) {
@@ -46,10 +33,17 @@ public:
     }
 };
 int main() {
-    ITFConversion itf;
+    Solution sol;
     string exp;
     cout << "Enter expression" << endl;
     cin >> exp;
-    cout << "Postfix form: " << itf.infixToPostfix(exp) << endl;
+    cout << "Postfix form: " << sol.infixToPostfix(exp) << endl;
     return 0;
 }
+/* Write C++ program to convert infix expression to postfix
+Sample Test case:
+Enter expression
+input=a+b*c/d-e
+output :
+Postfix form: abc*d/+e-
+*/
