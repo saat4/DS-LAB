@@ -40,7 +40,8 @@ int main() {
     cout << "Postfix form: " << sol.infixToPostfix(exp) << endl;
     return 0;
 }
-/* Write C++ program to convert infix expression to postfix
+/*
+Write C++ program to convert infix expression to postfix
 Sample Test case:
 Enter expression
 input=a+b*c/d-e
