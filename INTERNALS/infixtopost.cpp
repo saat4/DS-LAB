@@ -1,53 +1,55 @@
-// convert infix to postfix using stack
-#include <bits/stdc++.h>
+/* Write C++ program to convert infix expression to postfix
+
+Sample Test case:
+
+Enter expression                                                                                                        
+input=a+b*c/d-e
+output=                                                                                                      
+Postfix form: abc*d/+e-   
+
+*/
+#include <iostream>
+#include <stack>
 using namespace std;
-class Solution {
+class ITFConversion {
 public:
-    bool isop(char c) {
-        if (c == '+' || c == '-' || c == '*' || c == '/') return true;
-        return false;
-    }
+    stack<char> st;
+    string res;
     int prec(char c) {
+        //Write code here
         if (c == '+' || c == '-') return 1;
         if (c == '*' || c == '/') return 2;
         return 0;
     }
-    string infixtopostfix(string s) {
-        stack<char> st;
-        string ans;
+    bool isop(char c) {
+        if (c == '+' || c == '-' || c == '*' || c == '/') return true;
+        return false;
+    }
+    string infixToPostfix(string s) {
+        //Write code here
         for (int i = 0; i < s.length(); i++) {
             if (isop(s[i])) {
                 while (!st.empty() && prec(st.top()) >= prec(s[i])) {
-                    ans += st.top();
+                    res += st.top();
                     st.pop();
                 }
                 st.push(s[i]);
-            } else if (s[i] == '(') {
-                st.push(s[i]);
-            } else if (s[i] == ')') {
-                while (st.top() != '(') {
-                    ans += st.top();
-                    st.pop();
-                }
-                st.pop();
             } else {
-                ans += s[i];
+                res += s[i];
             }
         }
         while (!st.empty()) {
-            ans += st.top();
+            res += st.top();
             st.pop();
         }
-        return ans;
+        return res;
     }
 };
 int main() {
-    string s;
-    Solution sol;
-    cout << "Enter infix expression : ";
-    cin >> s;
-    cout << "Postfix expression : " << sol.infixtopostfix(s) << endl;
+    ITFConversion itf;
+    string exp;
+    cout << "Enter expression" << endl;
+    cin >> exp;
+    cout << "Postfix form: " << itf.infixToPostfix(exp) << endl;
+    return 0;
 }
-
-// Enter infix expression : a + b* c / d - e
-// Postfix expression : abc* d / +e -
