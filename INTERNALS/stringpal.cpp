@@ -3,7 +3,7 @@
 using namespace std;
 class Solution {
 public:
-    bool stringPalindrome(string s) {
+    bool checkpal(string s) {
         stack<char> st;
         for (int i = 0; i < s.length(); i++) {
             st.push(s[i]);
@@ -22,7 +22,7 @@ int main() {
     string str;
     cout << "Enter a string : ";
     cin >> str;
-    int r = s.stringPalindrome(str);
+    int r = s.checkpal(str);
     if (r == 1) {
         cout << "Palindrome" << endl;
     } else {
