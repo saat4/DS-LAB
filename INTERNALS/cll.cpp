@@ -12,14 +12,9 @@ public:
 };
 class CLL {
 public:
-    Node *head, *tail;
-    CLL() {
-        head = tail = NULL;
-    }
-    void addAtTail() {
-        int d;
-        cout << "Enter element to insert at end : ";
-        cin >> d;
+    Node *head = NULL;
+    Node *tail = NULL;
+    void addAtTail(int d) {
         Node *temp = new Node(d);
         if (head == NULL) {
             head = temp;
@@ -71,7 +66,10 @@ int main() {
         cin >> ch;
         switch (ch) {
             case 1:
-                cll.addAtTail();
+                int d;
+                cout << "Enter element to insert : ";
+                cin >> d;
+                cll.addAtTail(d);
                 break;
             case 2:
                 cll.deleteNode();
@@ -86,59 +84,3 @@ int main() {
         }
     }
 }
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 1
-// Enter element to insert at end : 5
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 1
-// Enter element to insert at end : 10
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 1
-// Enter element to insert at end : 15
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 3
-// 5 10 15
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 2
-// Enter element to delete : 10
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 3
-// 5 15
-
-// CIRCULAR LINKED LIST OPERATIONS
-// 1) Insertion
-// 2) Deletion
-// 3) Display
-// 4) Exit
-// Enter your choice : 4
-// Exit
