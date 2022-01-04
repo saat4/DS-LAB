@@ -12,12 +12,12 @@ public:
             st.push(s[i]);
         }
         for (int i = 0; i < s.length(); i++) {
-            if (st.top() == s[i]) {
-                return true;
+            if (st.top() != s[i]) {
+                return false;
             }
             st.pop();
         }
-        return false;
+        return true;
     }
 };
 int main() {
