@@ -11,18 +11,21 @@ public:
 };
 class BST {
 public:
-    Node *root = NULL;
+    Node *root;
+    BST() {
+        root = NULL;
+    }
     Node *addNode(Node *r, int d) {
         if (r == NULL) {
-            Node *nptr = new Node(d);
-            return nptr;
-        } else if (r->data > d) {
-            r->left = addNode(r->left, d);
-            return r;
-        } else {
-            r->right = addNode(r->right, d);
+            r = new Node(d);
             return r;
         }
+        if (d < r->data) {
+            r->left = addNode(r->left, d);
+        } else if (d > r->data) {
+            r->right = addNode(r->right, d);
+        }
+        return r;
     }
     // traversal
     void inorder(Node *r) {
@@ -41,23 +44,48 @@ public:
             return 1 + max(height(r->left), height(r->right));
         }
     }
-    // second min
-    int secondMin(Node *r) {
+    // second largest
+    void secondLargestUtil(Node *r, int &c) {
+        if (r == NULL || c >= 2) return;
+        secondLargestUtil(r->right, c);
+        c++;
+        if (c == 2) {
+            cout << "2nd largest element is " << r->data << endl;
+            return;
+        }
+        secondLargestUtil(r->left, c);
     }
-    // second max
-    int secondMax(Node *r) {
+    void secondLargest(Node *r) {
+        int c = 0;
+        secondLargestUtil(r, c);
+    }
+    // second smallest
+    void secondSmallestUtil(Node *r, int &c) {
+        if (r == NULL || c >= 2) return;
+        secondSmallestUtil(r->left, c);
+        c++;
+        if (c == 2) {
+            cout << "2nd smallest element is " << r->data << endl;
+            return;
+        }
+        secondSmallestUtil(r->right, c);
+    }
+    void secondSmallest(Node *r) {
+        int c = 0;
+        secondSmallestUtil(r, c);
     }
 } bst;
 int main() {
-    Node *t = bst.addNode(NULL, 10);
-    t = bst.addNode(t, 6);
-    t = bst.addNode(t, 15);
-    t = bst.addNode(t, 3);
-    t = bst.addNode(t, 8);
+    Node *t = bst.addNode(NULL, 50);
+    t = bst.addNode(t, 30);
     t = bst.addNode(t, 20);
+    t = bst.addNode(t, 40);
+    t = bst.addNode(t, 70);
+    t = bst.addNode(t, 60);
+    t = bst.addNode(t, 80);
     bst.inorder(t);
     cout << endl;
     cout << "height : " << bst.height(t) << endl;
-    cout << "second min : " << bst.secondMin(t) << endl;
-    cout << "second max : " << bst.secondMax(t) << endl;
+    bst.secondLargest(t);
+    bst.secondSmallest(t);
 }
