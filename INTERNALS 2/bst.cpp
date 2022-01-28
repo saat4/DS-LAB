@@ -76,16 +76,16 @@ public:
     }
 } bst;
 int main() {
-    Node *t = bst.addNode(NULL, 50);
-    t = bst.addNode(t, 30);
-    t = bst.addNode(t, 20);
-    t = bst.addNode(t, 40);
-    t = bst.addNode(t, 70);
-    t = bst.addNode(t, 60);
-    t = bst.addNode(t, 80);
+    Node *t = bst.addNode(NULL, 10);
+    t = bst.addNode(t, 4);
+    t = bst.addNode(t, 12);
+    t = bst.addNode(t, 3);
+    t = bst.addNode(t, 8);
+    t = bst.addNode(t, 11);
+    t = bst.addNode(t, 13);
     bst.inorder(t);
     cout << endl;
-    cout << "height : " << bst.height(t) << endl;
+    cout << "height = " << bst.height(t) << endl;
     bst.secondLargest(t);
     bst.secondSmallest(t);
 }
