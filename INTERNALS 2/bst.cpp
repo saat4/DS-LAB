@@ -42,9 +42,11 @@ public:
         }
     }
     // second min
-    int secondMin(Node *r) {}
+    int secondMin(Node *r) {
+    }
     // second max
-    int secondMax(Node *r) {}
+    int secondMax(Node *r) {
+    }
 } bst;
 int main() {
     Node *t = bst.addNode(NULL, 10);
