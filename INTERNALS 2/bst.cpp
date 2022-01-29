@@ -99,7 +99,7 @@ int main() {
     }
     bst.inorder(t);
     cout << endl;
-    cout << "height = " << bst.height(t) << endl;
+    cout << "Height is " << bst.height(t) << endl;
     bst.secondLargest(t);
     bst.secondSmallest(t);
 }
