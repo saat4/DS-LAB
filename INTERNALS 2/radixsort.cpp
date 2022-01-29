@@ -1,32 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-void countSort(int arr[], int n, int exp) {
-    int output[n];
-    int i, count[10] = {0};
-    for (i = 0; i < n; i++) {
-        count[(arr[i] / exp) % 10]++;
-    }
-    for (i = 1; i < 10; i++) {
-        count[i] += count[i - 1];
-    }
+void countSort(int arr[], int n, int e) {
+    int i, op[n], count[10] = {0};
+    for (i = 0; i < n; i++) count[(arr[i] / e) % 10]++;
+    for (i = 1; i < 10; i++) count[i] += count[i - 1];
     for (i = n - 1; i >= 0; i--) {
-        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-        count[(arr[i] / exp) % 10]--;
+        op[count[(arr[i] / e) % 10] - 1] = arr[i];
+        count[(arr[i] / e) % 10]--;
     }
-    for (i = 0; i < n; i++) {
-        arr[i] = output[i];
-    }
+    for (i = 0; i < n; i++) arr[i] = op[i];
 }
 void radixsort(int arr[], int n) {
     int m = arr[0];
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > m) {
+    for (int i = 1; i < n; i++)
+        if (arr[i] > m)
             m = arr[i];
-        }
-    }
-    for (int exp = 1; m / exp > 0; exp *= 10) {
-        countSort(arr, n, exp);
-    }
+    for (int i = 1; m / i > 0; i *= 10) countSort(arr, n, i);
 }
 int main() {
     int n;
@@ -34,11 +23,8 @@ int main() {
     cin >> n;
     int arr[n];
     cout << "Enter elements : ";
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
+    for (int i = 0; i < n; i++) cin >> arr[i];
     radixsort(arr, n);
     cout << "After sorting : ";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+    for (int i = 0; i < n; i++) cout << arr[i] << " ";
 }
