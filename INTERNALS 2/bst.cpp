@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n;
 class Node {
 public:
     int data;
@@ -28,7 +27,8 @@ public:
         }
         return r;
     }
-    void inorder(Node *r) {  // traversal
+    // traversal
+    void inorder(Node *r) {
         if (r == NULL) {
             return;
         }
@@ -36,59 +36,56 @@ public:
         cout << r->data << " ";
         inorder(r->right);
     }
-    void reverseInorder(Node *r) {
-        if (r == NULL) {
-            return;
-        }
-        reverseInorder(r->right);
-        cout << r->data << " ";
-        reverseInorder(r->left);
-    }
-    int height(Node *r) {  // height
+    // height
+    int height(Node *r) {
         if (r == NULL) {
             return 0;
         } else {
             return 1 + max(height(r->left), height(r->right));
         }
     }
-    void secondLargestandSmallest(Node *r) {
-        if (r == NULL) return;
-        static int count = 0;
-        secondLargestandSmallest(r->right);
-        count++;
-        if (count == 2) {
-            cout << "Second Largest : " << r->data << endl;
+    // second largest
+    void secondLargestUtil(Node *r, int &c) {
+        if (r == NULL || c >= 2) return;
+        secondLargestUtil(r->right, c);
+        c++;
+        if (c == 2) {
+            cout << "2nd largest element is " << r->data << endl;
+            return;
         }
-        if (count == n - 1) {
-            cout << "Second Smallest : " << r->data << endl;
+        secondLargestUtil(r->left, c);
+    }
+    void secondLargest(Node *r) {
+        int c = 0;
+        secondLargestUtil(r, c);
+    }
+    // second smallest
+    void secondSmallestUtil(Node *r, int &c) {
+        if (r == NULL || c >= 2) return;
+        secondSmallestUtil(r->left, c);
+        c++;
+        if (c == 2) {
+            cout << "2nd smallest element is " << r->data << endl;
+            return;
         }
-        secondLargestandSmallest(r->left);
+        secondSmallestUtil(r->right, c);
+    }
+    void secondSmallest(Node *r) {
+        int c = 0;
+        secondSmallestUtil(r, c);
     }
 } bst;
 int main() {
-    // Node *t = bst.addNode(NULL, 10);
-    // t = bst.addNode(t, 4);
-    // t = bst.addNode(t, 12);
-    // t = bst.addNode(t, 3);
-    // t = bst.addNode(t, 8);
-    // t = bst.addNode(t, 11);
-    // t = bst.addNode(t, 13);
-    cout << "Enter number of elements : ";
-    cin >> n;
-    int r, arr[n];
-    cout << "Enter root : ";
-    cin >> r;
-    Node *t = bst.addNode(NULL, r);
-    cout << "Enter remaining " << n - 1 << " elements : ";
-    for (int i = 0; i < n - 1; i++) {
-        cin >> arr[i];
-    }
-    for (int i = 0; i < n - 1; i++) {
-        t = bst.addNode(t, arr[i]);
-    }
-    cout << "Elements are : ";
+    Node *t = bst.addNode(NULL, 50);
+    t = bst.addNode(t, 30);
+    t = bst.addNode(t, 20);
+    t = bst.addNode(t, 40);
+    t = bst.addNode(t, 70);
+    t = bst.addNode(t, 60);
+    t = bst.addNode(t, 80);
     bst.inorder(t);
     cout << endl;
-    cout << "Height is " << bst.height(t) << endl;
-    bst.secondLargestandSmallest(t);
+    cout << "height : " << bst.height(t) << endl;
+    bst.secondLargest(t);
+    bst.secondSmallest(t);
 }
