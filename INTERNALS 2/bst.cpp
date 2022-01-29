@@ -76,13 +76,27 @@ public:
     }
 } bst;
 int main() {
-    Node *t = bst.addNode(NULL, 10);
-    t = bst.addNode(t, 4);
-    t = bst.addNode(t, 12);
-    t = bst.addNode(t, 3);
-    t = bst.addNode(t, 8);
-    t = bst.addNode(t, 11);
-    t = bst.addNode(t, 13);
+    // Node *t = bst.addNode(NULL, 10);
+    // t = bst.addNode(t, 4);
+    // t = bst.addNode(t, 12);
+    // t = bst.addNode(t, 3);
+    // t = bst.addNode(t, 8);
+    // t = bst.addNode(t, 11);
+    // t = bst.addNode(t, 13);
+    int n, r;
+    cout << "Enter number of elements : ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter root : ";
+    cin >> r;
+    Node *t = bst.addNode(NULL, r);
+    cout << "Enter elements of BST : ";
+    for (int i = 0; i < n - 1; i++) {
+        cin >> arr[i];
+    }
+    for (int i = 0; i < n - 1; i++) {
+        t = bst.addNode(t, arr[i]);
+    }
     bst.inorder(t);
     cout << endl;
     cout << "height = " << bst.height(t) << endl;
