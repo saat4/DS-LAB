@@ -1,3 +1,8 @@
+/* WAP to create Binary Search tree for given numbers, 
+   find the second maximum, second minimum element in that tree,
+   Print the elements in Post order Traversal
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 int n;
@@ -28,7 +33,7 @@ public:
         }
         return r;
     }
-    void inorder(Node *r) {  // traversal
+    void inorder(Node *r) {
         if (r == NULL) {
             return;
         }
@@ -36,32 +41,23 @@ public:
         cout << r->data << " ";
         inorder(r->right);
     }
-    int height(Node *r) {  // height
-        if (r == NULL) {
-            return 0;
-        } else {
-            return 1 + max(height(r->left), height(r->right));
-        }
-    }
     void secondLargestandSmallest(Node *r) {
         if (r == NULL) return;
         static int count = 0;
         secondLargestandSmallest(r->right);
         count++;
         if (count == 2) {
-            cout << "Second Largest : " << r->data << endl;
+            cout << "second maximum element: " << r->data << endl;
         }
         if (count == n - 1) {
-            cout << "Second Smallest : " << r->data << endl;
+            cout << "second minimum element: " << r->data << endl;
         }
         secondLargestandSmallest(r->left);
     }
 } bst;
 int main() {
-    cout << "Enter number of elements : ";
-    cin >> n;
     int arr[n];
-    cout << "Enter " << n << " elements : ";
+    cout << "enter the elements" << endl;
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
@@ -69,9 +65,8 @@ int main() {
     for (int i = 1; i < n; i++) {
         t = bst.addNode(t, arr[i]);
     }
-    cout << "Elements are : ";
+    bst.secondLargestandSmallest(t);
+    cout << "post are traversal elements: ";
     bst.inorder(t);
     cout << endl;
-    cout << "Height is " << bst.height(t) << endl;
-    bst.secondLargestandSmallest(t);
 }

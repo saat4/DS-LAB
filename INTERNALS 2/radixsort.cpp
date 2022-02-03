@@ -18,13 +18,13 @@ void countSort(int arr[], int n, int exp) {
     }
 }
 void radixsort(int arr[], int n) {
-    int m = arr[0];
+    int a = arr[0];
     for (int i = 1; i < n; i++) {
-        if (arr[i] > m) {
-            m = arr[i];
+        if (arr[i] > a) {
+            a = arr[i];
         }
     }
-    for (int exp = 1; m / exp > 0; exp *= 10) {
+    for (int exp = 1; a / exp > 0; exp *= 10) {
         countSort(arr, n, exp);
     }
 }

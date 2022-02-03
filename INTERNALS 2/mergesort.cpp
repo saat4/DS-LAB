@@ -1,44 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
-void merge(int *array, int l, int m, int r) {
-    int i, j, k, nl, nr;
-    nl = m - l + 1;
-    nr = r - m;
-    int larr[nl], rarr[nr];
-    for (i = 0; i < nl; i++)
-        larr[i] = array[l + i];
-    for (j = 0; j < nr; j++)
-        rarr[j] = array[m + 1 + j];
+void merge(int *array, int a, int b, int c) {
+    int i, j, k, na, nc;
+    na = b - a + 1;
+    nc = c - b;
+    int aarr[na], carr[nc];
+    for (i = 0; i < na; i++)
+        aarr[i] = array[a + i];
+    for (j = 0; j < nc; j++)
+        carr[j] = array[b + 1 + j];
     i = 0;
     j = 0;
-    k = l;
-    while (i < nl && j < nr) {
-        if (larr[i] <= rarr[j]) {
-            array[k] = larr[i];
+    k = a;
+    while (i < na && j < nc) {
+        if (aarr[i] <= carr[j]) {
+            array[k] = aarr[i];
             i++;
         } else {
-            array[k] = rarr[j];
+            array[k] = carr[j];
             j++;
         }
         k++;
     }
-    while (i < nl) {
-        array[k] = larr[i];
+    while (i < na) {
+        array[k] = aarr[i];
         i++;
         k++;
     }
-    while (j < nr) {
-        array[k] = rarr[j];
+    while (j < nc) {
+        array[k] = carr[j];
         j++;
         k++;
     }
 }
-void mergeSort(int *array, int l, int r) {
-    if (l < r) {
-        int m = l + (r - l) / 2;
-        mergeSort(array, l, m);
-        mergeSort(array, m + 1, r);
-        merge(array, l, m, r);
+void mergeSort(int *array, int a, int c) {
+    if (a < c) {
+        int b = a + (c - a) / 2;
+        mergeSort(array, a, b);
+        mergeSort(array, b + 1, c);
+        merge(array, a, b, c);
     }
 }
 int main() {
