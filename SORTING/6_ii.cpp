@@ -9,11 +9,7 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 void quicksort(int *arr, int first, int last) {
-<<<<<<< HEAD:INTERNALS 2/quicksort.cpp
     int p, temp, i, j;
-=======
-    int pivot, temp, i, j;
->>>>>>> ffbcc80ef192ff228e5389184ade43a2c8c1da21:SORTING/6_ii.cpp
     if (first < last) {
         int pivot = i = first, j = last;
         while (i < j) {
