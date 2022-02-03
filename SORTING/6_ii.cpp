@@ -1,3 +1,6 @@
+// Write a program that implements the following sorting methods to sort a given list ofintegers in ascending
+// order ii) Quick sort
+
 #include <bits/stdc++.h>
 using namespace std;
 void swap(int *a, int *b) {
@@ -6,7 +9,11 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 void quicksort(int *arr, int first, int last) {
+<<<<<<< HEAD:INTERNALS 2/quicksort.cpp
     int p, temp, i, j;
+=======
+    int pivot, temp, i, j;
+>>>>>>> ffbcc80ef192ff228e5389184ade43a2c8c1da21:SORTING/6_ii.cpp
     if (first < last) {
         int pivot = i = first, j = last;
         while (i < j) {
@@ -37,3 +44,7 @@ int main() {
     }
     cout << endl;
 }
+
+// Enter number of elements: 5
+// Enter elements: 1 4 8 5 2
+// Sorted elements are : 1 2 4 5 8

@@ -1,3 +1,6 @@
+// Write a program that implements the following sorting methods to sort a given list ofintegers in ascending 
+// order i) Merge sort
+
 #include <bits/stdc++.h>
 using namespace std;
 void merge(int *array, int a, int b, int c) {
@@ -56,3 +59,7 @@ int main() {
         cout << arr[i] << " ";
     }
 }
+
+// Enter number of elements : 5
+// Enter elements : 1 4 2 5 8
+// Array after Sorting : 1 2 4 5 8

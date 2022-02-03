@@ -1,10 +1,13 @@
 # DS-LAB
-Singly linked lists
 
-Doubly linked lists
+Linked Lists
 
-Circular linked lists
+Stacks and Applications
 
-Stack
+Queues and Applications
 
-Queue
+Trees and BST
+
+Graphs and traversal methods
+
+Searching and Sorting

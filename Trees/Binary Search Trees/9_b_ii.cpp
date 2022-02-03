@@ -1,3 +1,5 @@
+// deletion in BST
+
 #include <iostream>
 using namespace std;
 class Node {
@@ -46,7 +48,7 @@ public:
                     pptr->left = NULL;
                 } else {
                     pptr->right = NULL;
-                }   
+                }
                 delete dptr;
             } else {
                 if (dptr->left == NULL || dptr->right == NULL) {
@@ -97,17 +99,11 @@ int main() {
     cout << "Before deletion" << endl;
     bst.inorder(t);
     cout << endl;
+    int x;
+    cout << "Enter element to delete : " << endl;
+    cin >> x;
+    bst.deleteNode(t, x);
     cout << "After deletion" << endl;
-    bst.deleteNode(t, 7);
     bst.inorder(t);
     cout << endl;
-    int a;
-    cout << "Enter element to search : ";
-    cin >> a;
-    Node *res = bst.search(t, a);
-    if (res != NULL) {
-        cout << "Found" << endl;
-    } else {
-        cout << "Element not found" << endl;
-    }
 }

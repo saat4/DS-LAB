@@ -1,3 +1,5 @@
+// Write a program to print the nodes in a given range for a BST
+
 #include <iostream>
 using namespace std;
 class Node {
@@ -24,11 +26,23 @@ public:
             return r;
         }
     }
+    Node *search(Node *r, int val) {
+        if (r == NULL) return NULL;
+        if (r->data == val) return r;
+        if (r->data > val) return search(r->left, val);
+        return search(r->right, val);
+    }
     void inorder(Node *r) {
         if (r == NULL) return;
         inorder(r->left);
         cout << r->data << " ";
         inorder(r->right);
+    }
+    void printRange(Node *r, int l, int h) {
+        if (r == NULL) return;
+        if (r->data > l) printRange(r->left, l, h);
+        if (r->data >= l && r->data <= h) cout << r->data << " ";
+        if (r->data < h) printRange(r->right, l, h);
     }
 };
 int main() {
@@ -41,6 +55,11 @@ int main() {
     t = bst.addNode(t, 12);
     t = bst.addNode(t, 14);
     t = bst.addNode(t, 9);
+    cout << "Inorder traversal : ";
     bst.inorder(t);
     cout << endl;
+    int a, b;
+    cout << "Enter range to display nodes (2 numbers) : ";
+    cin >> a >> b;
+    bst.printRange(t, a, b);
 }
