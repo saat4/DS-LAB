@@ -1,7 +1,10 @@
+// post order
+// second min
+// second max
 // BST
+
 #include <bits/stdc++.h>
 using namespace std;
-int n;
 class Node {
 public:
     int data;
@@ -10,69 +13,54 @@ public:
         data = d;
         left = right = NULL;
     }
+    void display() {
+        cout << data << " ";
+    }
 };
 class BST {
 public:
-    Node *root;
-    BST() {
-        root = NULL;
+    Node* rptr = NULL;
+    Node* insert(Node* root, int d) {
+        if (root == NULL) {
+            root = new Node(d);
+            return root;
+        }
+        if (d < root->data) {
+            root->left = insert(root->left, d);
+        } else if (d > root->data) {
+            root->right = insert(root->right, d);
+        }
+        return root;
     }
-    Node *addNode(Node *r, int d) {
-        if (r == NULL) {
-            r = new Node(d);
-            return r;
-        }
-        if (d < r->data) {
-            r->left = addNode(r->left, d);
-        } else if (d > r->data) {
-            r->right = addNode(r->right, d);
-        }
-        return r;
+    void postorder(Node* p) {
+        if (p == NULL) return;
+        postorder(p->left);
+        postorder(p->right);
+        cout << p->data << " ";
     }
-    void inorder(Node *r) {  // traversal
-        if (r == NULL) {
-            return;
-        }
-        inorder(r->left);
-        cout << r->data << " ";
-        inorder(r->right);
+    int getsecondmin(Node* a) {
+        while (a->left->left != NULL) a = a->left;
+        return a->data;
     }
-    int height(Node *r) {  // height
-        if (r == NULL) {
-            return 0;
-        } else {
-            return 1 + max(height(r->left), height(r->right));
-        }
-    }
-    void secondLargestandSmallest(Node *r) {
-        if (r == NULL) return;
-        static int count = 0;
-        secondLargestandSmallest(r->right);
-        count++;
-        if (count == 2) {
-            cout << "Second Largest : " << r->data << endl;
-        }
-        if (count == n - 1) {
-            cout << "Second Smallest : " << r->data << endl;
-        }
-        secondLargestandSmallest(r->left);
+    int getsecondmax(Node* a) {
+        while (a->right->right != NULL) a = a->right;
+        return a->data;
     }
 } bst;
 int main() {
-    cout << "Enter number of elements : ";
-    cin >> n;
-    int arr[n];
-    cout << "Enter " << n << " elements : ";
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
-    Node *t = bst.addNode(NULL, arr[0]);
-    for (int i = 1; i < n; i++) {
-        t = bst.addNode(t, arr[i]);
-    }
-    cout << "Elements are : ";
-    bst.inorder(t);
+    Node* t = bst.insert(NULL, 5);
+    t = bst.insert(t, 2);
+    t = bst.insert(t, 4);
+    t = bst.insert(t, 7);
+    t = bst.insert(t, 1);
+    t = bst.insert(t, 9);
+    t = bst.insert(t, 8);
+    t = bst.insert(t, 3);
+    t = bst.insert(t, 6);
+    cout << "postorder : ";
+    bst.postorder(t);
     cout << endl;
-    cout << "Height is " << bst.height(t) << endl;
-    bst.secondLargestandSmallest(t);
+    cout << bst.getsecondmax(t);
+    cout << endl;
+    cout << bst.getsecondmin(t);
 }
